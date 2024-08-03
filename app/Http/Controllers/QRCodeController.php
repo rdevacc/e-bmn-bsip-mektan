@@ -33,7 +33,7 @@ class QRCodeController extends Controller
         $qrId = $request->qr_data_id;
         $qrData = Barang::find($qrId);
         $qrName = "BBPSI Mektan - " . $qrData->nama; 
-        $qrUrl = $request->root() .'/get-data' . '/'  . $qrId;
+        $qrUrl = $request->root() .'/app/bmn/get-data' . '/'  . $qrId;
 
         // Generate QR Code
         $qrCode = QrCode::format('png')->size(300)->merge('/public/admin/assets/img/logo-kementan.png')->generate($qrUrl);
@@ -68,7 +68,7 @@ class QRCodeController extends Controller
 
         // Create Text "BBPSI Mektan"
         $textImage->text('BBPSI Mektan', $x, $y, function (FontFactory $font){
-            $font->file(base_path('public\admin\assets\fonts\ARIALUNI.TTF'));
+            $font->file(public_path('admin/assets/fonts/ARIALUNI.TTF'));
             $font->size(32);
             $font->color('000');
             $font->align('center');
@@ -77,7 +77,7 @@ class QRCodeController extends Controller
 
         // Create Text kode barang
         $textImage->text($qrData->kode_barang, $x, $y+60, function (FontFactory $font){
-            $font->file(base_path('public\admin\assets\fonts\ARIALUNI.TTF'));
+            $font->file(public_path('admin/assets/fonts/ARIALUNI.TTF'));
             $font->size(32);
             $font->color('000');
             $font->align('center');
@@ -86,7 +86,7 @@ class QRCodeController extends Controller
         
         // Create Text nama barang
         $textImage->text($qrData->nama, $x, $y+30, function (FontFactory $font){
-            $font->file(base_path('public\admin\assets\fonts\ARIALUNI.TTF'));
+            $font->file(public_path('admin/assets/fonts/ARIALUNI.TTF'));
             $font->size(32);
             $font->color('000');
             $font->align('center');
